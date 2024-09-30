@@ -58,4 +58,13 @@ func testTime(){
 	fmt.Println(t.Weekday())
 	fmt.Println(t.YearDay())
 	fmt.Println(t.Format("2006/01/02 15:04:05"))
+
+	// 時刻を比較する
+	t1 := time.Date(2020, 1, 1, 0, 0, 0, 0, time.Local)
+	t2 := time.Date(2020, 1, 2, 0, 0, 0, 0, time.Local)
+	fmt.Println(t1.Before(t2))
+
+	// 指定時間のスリープ
+	time.Sleep(1 * time.Second)
+	fmt.Println("sleep")
 }
