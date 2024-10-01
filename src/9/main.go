@@ -7,7 +7,7 @@ import (
 
 
 func main() {
-	testChannelGoRoutine()
+	testSlice()
 }
 
 // channel
@@ -62,4 +62,38 @@ func reciever(ch <- chan int){
 		i := <- ch
 		fmt.Println(i)
 	}
+}
+
+// スライスについて
+// スライスは、配列の一部を参照するためのデータ構造
+func testSlice(){
+	// var s []int
+	// s = make([]int, 5)
+	s := make([]int, 5)
+	fmt.Println(s)
+	s[0] = 1
+	s[1] = 2
+	s[2] = 3
+	s[3] = 4
+	s[4] = 5
+	fmt.Println(s)
+	fmt.Println(s[0])
+	fmt.Println(s[1])
+	fmt.Println(s[2])
+	fmt.Println(s[3])
+	fmt.Println(s[4])
+
+	//暗黙的なスライスの宣言
+	s2 := []int{1, 2, 3, 4, 5}
+	fmt.Println(s2)
+
+	//make()関数を使用してスライスを作成する
+	s3 := make([]int, 5)
+	fmt.Println(s3)
+
+	//スライスの要素数を取得する
+	fmt.Println(len(s3))
+
+	//スライスのキャパシティを取得する
+	fmt.Println(cap(s3))
 }
