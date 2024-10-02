@@ -97,3 +97,11 @@ func testSlice(){
 	//スライスのキャパシティを取得する
 	fmt.Println(cap(s3))
 }
+
+// スライスのコピー
+func testSliceCopyTest(){
+	s1 := []int{1, 2, 3, 4, 5}
+	s2 := make([]int, 5)
+	copy(s2, s1)
+	fmt.Println(s2)
+}
