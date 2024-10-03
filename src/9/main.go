@@ -116,7 +116,37 @@ func testChannelGoRoutine(){
 		fmt.Println(n, s5, s6)
 	}
 
+	// スライスのfor文
+	func testSliceFor(){
+		s := []int{1, 2, 3, 4, 5}
+		for i := 0; i < len(s); i++{
+			fmt.Println(s[i])
+		}
+		// rangeを使用する
+		for i, v := range s{
+			fmt.Println(i, v)
+		}
+		// valuesのみ取得
+		for _, v := range s{
+			fmt.Println(v)
+		}
+		// インデックスのみ取得
+		for i:= range s{
+			fmt.Println(i)
+		}
+	}
+
+	//スライスの可変長引数
+	//要素の数を指定せずに引数を渡すことができる
+	func testSliceVariable(s ...int) int {
+		n:=0
+		for _,v:=range s{
+			n+=v
+		}
+		return n
+	}
+
 
 	func main() {
-		testSliceCopyTest()
+		// fmt.Println(testSliceVariable(1,2,3,4,5))
 	}
