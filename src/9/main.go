@@ -217,6 +217,23 @@ func testMap(){
 		// 	}
 		// }
 
+		//チャネルのfor文
+		//チャネルをfor文で処理することができる
+		//チャネルがクローズされるまで、データの受信を繰り返す
+		func testChannelFor(){
+			ch := make(chan int)
+			go recieverFor(ch)
+			for i := 0; i < 10; i++{
+				ch <- i
+			}
+			close(ch)
+			time.Sleep(2 * time.Second)
+		}
+		func recieverFor(ch <- chan int){
+			for i := range ch{
+				fmt.Println(i)
+			}
+		}
 
 
 func main() {
