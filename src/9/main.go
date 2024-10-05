@@ -268,6 +268,7 @@ func testMap(){
 			ch3 := make(chan int, 2)
 			ch4 := make(chan int, 2)
 			ch5 := make(chan int, 2)
+			//ゴルーチンの無名関数は並行処理を行う
 			go func() {
 				for {
 					i := <- ch3
