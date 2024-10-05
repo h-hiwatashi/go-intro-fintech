@@ -73,8 +73,27 @@ func methodTest() {
 	user2.SayName()
 }
 
+//構造体の埋め込み
+type A struct {
+	//フィールド名と型名が同じ場合は省略可能
+	// User User
+	User
+}
+func methodTest2(){
+	a := A{User: User{Name: "tanaka", Age: 20}}
+	fmt.Println(a)
+	a.User.SayName()
+	//クラスが省略されている時は、フィールド名でアクセスできる
+	fmt.Println(a.Name)
+	a.SayName()
+
+	a.User.SetName2("suzuki")
+	//エラーになる
+	// User.SetName2("suzuki")
+}
+
 
 
 func main() {
-	methodTest()
+	methodTest2()
 }
