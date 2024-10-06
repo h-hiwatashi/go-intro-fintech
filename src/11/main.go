@@ -92,8 +92,19 @@ func methodTest2(){
 	// User.SetName2("suzuki")
 }
 
-
+//構造体のコンストラクタ
+func NewUser(name string, age int) *User {
+	//アドレス演算子を使って、構造体のポインタを作成することが多い
+	return &User{Name: name, Age: age}
+}
+func constructorTest(){
+	user1 := NewUser("user1", 20)
+	// ポインタ型であるため、アドレスが表示される
+	fmt.Println(user1)
+	// 実態にアクセスする場合は、アドレス演算子を使う
+	fmt.Println(*user1)
+}
 
 func main() {
-	methodTest2()
+	constructorTest()
 }
