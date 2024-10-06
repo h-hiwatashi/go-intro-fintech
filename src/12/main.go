@@ -5,6 +5,8 @@ import (
 )
 
 // interface
+// インターフェースは、メソッドの集まりを定義する型
+// インターフェースは、具体的な型を隠蔽するために使われる
 type Person struct {
 	Name string
 	Age int
@@ -34,7 +36,33 @@ func interfaceTest(){
 	}
 }
 
+// interface カスタムエラー
+type MyError struct {
+	Message string
+	ErrorCode int
+}
+func (e *MyError) Error() string {
+	return fmt.Sprintf("%v: %v", e.ErrorCode, e.Message)
+}
+func RaiseError() error {
+	return &MyError{
+		Message: "カスタムエラー",
+		ErrorCode: 500,
+	}
+}
+
+func errorTest() {
+	err := &MyError{Message: "エラーが発生しました", ErrorCode: 404}
+	fmt.Println(err.Error())
+
+	raise := RaiseError()
+	e, ok:= raise.(*MyError)
+	if ok {
+		fmt.Println(e.ErrorCode)
+	}
+}
+
 
 func main() {
-	interfaceTest()
+	errorTest()
 }
