@@ -128,6 +128,23 @@ func constructorSliceTest(){
 	fmt.Println(users2)
 }
 
+// struct map
+func structMapTest(){
+	m1 := map[string]User{
+		"user1": {Name: "user1", Age: 20},
+		"user2": {Name: "user2", Age: 30},
+		"user3": {Name: "user3", Age: 40},
+	}
+	fmt.Println(m1)
+
+	m3 := make(map[string]User)
+	fmt.Println(m3)
+	m3["a"] = User{Name: "user1", Age: 20}
+	fmt.Println(m3)
+
+}
+
+
 func main() {
-	constructorSliceTest()
+	structMapTest()
 }
