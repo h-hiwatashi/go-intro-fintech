@@ -141,10 +141,24 @@ func structMapTest(){
 	fmt.Println(m3)
 	m3["a"] = User{Name: "user1", Age: 20}
 	fmt.Println(m3)
+}
 
+// struct Defined type（独自型）
+type MyInt int
+func uniqueTest(){
+	var i1 MyInt
+	fmt.Println(i1)
+	fmt.Printf("%T\n", i1)
+
+	i1.Double()
+}
+func (m MyInt) Double() MyInt {
+	res := m +1
+	fmt.Println(res)
+	return res
 }
 
 
 func main() {
-	structMapTest()
+	uniqueTest()
 }
