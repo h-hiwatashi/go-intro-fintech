@@ -105,6 +105,29 @@ func constructorTest(){
 	fmt.Println(*user1)
 }
 
+// 構造体のスライス
+//ポインタ型のスライスを定義するのが一般的
+type Users []*User
+func constructorSliceTest(){
+	users1 := []*User{
+		{Name: "user1", Age: 20},
+		{Name: "user2", Age: 30},
+		{Name: "user3", Age: 40},
+	}
+	fmt.Println(users1)
+	user4 := User{Name: "user4", Age: 50}
+	users1 = append(users1, &user4)
+	fmt.Println(users1)
+	for _, u := range users1 {
+		fmt.Println(*u)
+	}
+
+	users2 := Users{}
+	user5 := User{Name: "user5", Age: 60}
+	users2 = append(users2, &user5)
+	fmt.Println(users2)
+}
+
 func main() {
-	constructorTest()
+	constructorSliceTest()
 }
