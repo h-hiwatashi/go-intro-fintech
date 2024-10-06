@@ -63,6 +63,14 @@ func errorTest() {
 }
 
 
+// interface Stringer
+type Stringer interface {
+    String() string
+}
+// stringerについて
+
+
+
 func main() {
 	errorTest()
 }
