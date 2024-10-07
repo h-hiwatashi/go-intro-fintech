@@ -23,3 +23,7 @@ func TestIsOne(t *testing.T) {
 // go test -v
 
 // go test -v ./...
+
+// カバレッジ
+// cover rage
+// go test -cover ./...
