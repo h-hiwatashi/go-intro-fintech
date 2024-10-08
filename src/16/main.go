@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"math/rand"
 	"os"
 	"time"
 )
@@ -112,7 +113,25 @@ func testMath(){
 	fmt.Println(math.Ceil(1.9))
 }
 
+// randomパッケージ
+func testRandom(){
+	// 0からn未満の乱数を生成する
+	// rand.Intn()
+	// 乱数のシードを設定する
+	// rand.Seed()
+	// 現在の時間をシードに設定する
+	// rand.Seed(time.Now().UnixNano())
+	// 0からn未満の乱数を生成する
+	// fmt.Println(rand.Intn(100))
+
+	// 推奨の書き方
+	// 現在の時間をシードに設定して新しい乱数生成器を作成する
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	// 0からn未満の乱数を生成する
+	fmt.Println(r.Intn(100))
+}
+
 
 func main() {
-	testMath()
+	testRandom()
 }
