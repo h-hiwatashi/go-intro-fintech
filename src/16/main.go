@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"math"
 	"math/rand"
@@ -131,7 +132,37 @@ func testRandom(){
 	fmt.Println(r.Intn(100))
 }
 
+// flagパッケージ
+func testFlag(){
+//コマンドラインの引数をパースする
+// go run main.go -n -m message -x
+
+	// flagパッケージ
+	// コマンドライン引数をパースする
+	// flag.BoolVar()
+	// flag.IntVar()
+	// flag.StringVar()
+	// flag.Parse()
+	// flag.Args()
+	// flag.NArg()
+	// flag.Arg(i)
+	// flag.Usage()
+	// flag.Visit()
+	// flag.VisitAll()
+	var (
+		i int
+		// b bool
+		// s string
+	)
+	flag.IntVar(&i, "n", 32, "処理の最大値")
+
+	// パースする
+	flag.Parse()
+
+	fmt.Println("処理の最大値=", i)
+}
+
 
 func main() {
-	testRandom()
+	testFlag()
 }
