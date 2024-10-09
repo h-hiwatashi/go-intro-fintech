@@ -166,6 +166,36 @@ func testFlag(){
 	fmt.Println("文字列=", s)
 }
 
+// fmtパッケージ
+func testFmt(){
+	fmt.Println("改行")
+	fmt.Printf("フォーマット\n")
+
+	// 書き込み先を指定する
+	// Fprint: フォーマットなしで文字列を出力します。
+	// Fprintf: フォーマットされた文字列を出力します。
+	// Fprintln: フォーマットなしで文字列を出力し、最後に改行を追加します。
+	// fmt.Fprint()
+	// fmt.Fprintf()
+	// fmt.Fprintln()
+
+	//　出力ではなく文字列を返す
+	// fmt.Sprint()
+	// fmt.Sprintf()
+	// fmt.Sprintln()
+
+	
+	// fmt.Errorf()
+
+	// 指定されたio.Readerから入力を読み取り
+	// fmt.Fscan()
+	// fmt.Fscanf()
+	// fmt.Fscanln()
+
+	// fmt.Scanf()
+	// fmt.Sscan()
+	// fmt.Sscanln()
+	}
 
 func main() {
 	testFlag()
