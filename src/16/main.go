@@ -151,15 +151,19 @@ func testFlag(){
 	// flag.VisitAll()
 	var (
 		i int
-		// b bool
-		// s string
+		b bool
+		s string
 	)
 	flag.IntVar(&i, "n", 32, "処理の最大値")
+	flag.BoolVar(&b, "b", false, "真偽値")
+	flag.StringVar(&s, "s", "aaa", "文字列")
 
 	// パースする
 	flag.Parse()
 
 	fmt.Println("処理の最大値=", i)
+	fmt.Println("真偽値=", b)
+	fmt.Println("文字列=", s)
 }
 
 
