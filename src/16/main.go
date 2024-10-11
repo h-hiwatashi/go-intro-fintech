@@ -202,13 +202,22 @@ func testFmt(){
 	// %v: デフォルトフォーマット
 	// 様々な型の値を柔軟に出力する
 	fmt.Printf("%v\n", true)
+	fmt.Printf("%v\n", 1)
+	fmt.Printf("%v\n", 1.1)
+	fmt.Printf("%v\n", "1")
+	fmt.Printf("%v\n", []int{1, 2, 3})
 
 	// %+v: 構造体のフィールド名を表示
 	// %#v: Goの構文形式で表示
 
-
 	// %T: 型を表示
+	fmt.Printf("%T\n", true)
+	fmt.Printf("%T\n", 1)
+	fmt.Printf("%T\n", 1.1)
+	fmt.Printf("%T\n", "1")
+	fmt.Printf("%T\n", []int{1, 2, 3})
 	// %t: 真偽値を表示
+
 	// %b: 2進数を表示
 	// %c: Unicodeコードポイントを表示
 	// %d: 10進数を表示
