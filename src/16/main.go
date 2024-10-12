@@ -8,6 +8,7 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -357,6 +358,52 @@ func testStrconv(){
 	// 整数を文字列に追加する
 	byteSlice := []byte("test")
 	byteSlice = strconv.AppendInt(byteSlice, 100, 10)
+}
+
+// Stringsパッケージ
+func testStrings(){
+	// strings.Contains()
+	// 文字列が含まれているか判定する
+	fmt.Println(strings.Contains("test", "es"))
+	// strings.Count()
+	// 文字列が含まれている数を取得する
+	fmt.Println(strings.Count("test", "t"))
+	// strings.HasPrefix()
+	// 文字列が指定した文字列で始まっているか判定する
+	fmt.Println(strings.HasPrefix("test", "te"))
+	// strings.HasSuffix()
+	// 文字列が指定した文字列で終わっているか判定する
+	fmt.Println(strings.HasSuffix("test", "st"))
+	// strings.Index()
+	// 文字列が含まれている位置を取得する
+	fmt.Println(strings.Index("test", "s"))
+	// strings.LastIndex()
+	// 文字列が含まれている最後の位置を取得する
+	fmt.Println(strings.LastIndex("test", "t"))
+	// strings.Replace()
+	// 文字列を置換する
+	fmt.Println(strings.Replace("test", "t", "T", -1))
+	// strings.Split()
+	// 文字列を分割する
+	fmt.Println(strings.Split("test", "e"))
+	// strings.ToLower()
+	// 文字列を小文字に変換する
+	fmt.Println(strings.ToLower("TEST"))
+	// strings.ToUpper()
+	// 文字列を大文字に変換する
+	fmt.Println(strings.ToUpper("test"))
+	// strings.TrimSpace()
+	// 文字列の前後の空白を削除する
+	fmt.Println(strings.TrimSpace(" test "))
+	// strings.Trim()
+	// 文字列の前後の指定した文字列を削除する
+	fmt.Println(strings.Trim("test", "t"))
+	// strings.TrimLeft()
+	// 文字列の前の指定した文字列を削除する
+	fmt.Println(strings.TrimLeft("test", "t"))
+	// strings.TrimRight()
+	// 文字列の後の指定した文字列を削除する
+	fmt.Println(strings.TrimRight("test", "t"))
 }
 
 
