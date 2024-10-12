@@ -240,7 +240,7 @@ func testFmt(){
 	//logパッケージ
 	// log.Fatal()
 	func testLog(){
-		// log.SetOutput(os.Stdout)
+		log.SetOutput(os.Stdout)
 
 		// ログメッセージを出力する
 		// log.Print("ログメッセージ\n")
@@ -261,16 +261,33 @@ func testFmt(){
 		// ログの出力先を指定する
 		// 任意のファイルにログを出力することができる
 		// ファイルが存在しない場合は、新規作成される
-		f, err := os.Create("test.log")
-		if err != nil {
-			return
-		}
-		log.SetOutput(f)
-		log.Println("ログメッセージ")
+		// f, err := os.Create("test.log")
+		// if err != nil {
+		// 	return
+		// }
+		// log.SetOutput(f)
+		// log.Println("ログメッセージ")
 
 
 		// エラーメッセージを出力してプログラムを終了する
-		// los.SetFlags(log.LstdFlags | log.Lshortfile)
+		// 標準ログのフォーマット
+		log.SetFlags(log.LstdFlags)
+		log.Println("A")
+		// 2024/10/13 00:01:13 A
+
+		log.SetFlags(log.Ldate | log.Ltime | log.Lmicroseconds)
+		log.Println("B")
+		// 2024/10/13 00:01:13.946518 B
+
+		log.SetFlags(log.Ltime | log.Lshortfile)
+		log.Println("C")
+		// 00:01:13 main.go:281: C
+
+		log.SetFlags(log.LstdFlags)
+		log.SetPrefix("[INFO]")
+		log.Println("D")
+		//[INFO]2024/10/13 00:01:13 D
+
 	}
 
 
