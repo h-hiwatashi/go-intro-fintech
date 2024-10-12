@@ -288,6 +288,22 @@ func testFmt(){
 		log.Println("D")
 		//[INFO]2024/10/13 00:01:13 D
 
+
+
+		// ロガーを作成する
+		// ロガーを作成することで、出力先やフォーマットを指定することができる
+		// 第一引数に出力先を指定する
+		// 第二引数にプレフィックスを指定する
+		// 第三引数にフラグを指定する
+		logger := log.New(os.Stdout, "[ERROR]", log.LstdFlags)
+		logger.Println("E")
+		log.Println("F")
+		// 条件分岐によってエラーの内容を出力する
+		_, err := os.Open("test.txt")
+		if err != nil {
+			logger.Println(err)
+		}
+
 	}
 
 
