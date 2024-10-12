@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"math"
 	"math/rand"
 	"os"
@@ -236,7 +237,44 @@ func testFmt(){
 	}
 
 
+	//logパッケージ
+	// log.Fatal()
+	func testLog(){
+		// log.SetOutput(os.Stdout)
+
+		// ログメッセージを出力する
+		// log.Print("ログメッセージ\n")
+		// log.Println("ログメッセージ")
+		// log.Printf("log message %d\n", 1)
+		
+		// logメッセージを出力し処理が終了する
+		// log.Fatal("ログメッセージ\n")
+		// log.Fatalln("ログメッセージ")
+		// log.Fatalf("log message %d\n", 1)
+
+		// panicメッセージを出力し処理が終了する
+		// パニックは、エラーが発生した場合にプログラムを終了する
+		// log.Panic("ログメッセージ\n")
+		// log.Panicln("ログメッセージ")
+		// log.Panicf("log message %d\n", 1)
+
+		// ログの出力先を指定する
+		// 任意のファイルにログを出力することができる
+		// ファイルが存在しない場合は、新規作成される
+		f, err := os.Create("test.log")
+		if err != nil {
+			return
+		}
+		log.SetOutput(f)
+		log.Println("ログメッセージ")
+
+
+		// エラーメッセージを出力してプログラムを終了する
+		// los.SetFlags(log.LstdFlags | log.Lshortfile)
+	}
+
+
 
 func main() {
-	testFmt()
+	testLog()
 }
