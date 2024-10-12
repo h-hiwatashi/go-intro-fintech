@@ -7,6 +7,7 @@ import (
 	"math"
 	"math/rand"
 	"os"
+	"strconv"
 	"time"
 )
 
@@ -303,11 +304,63 @@ func testFmt(){
 		if err != nil {
 			logger.Println(err)
 		}
-
 	}
+
+
+	// strconvパッケージ
+func testStrconv(){
+	// strconv.Itoa()
+	// 数値を文字列に変換する
+	fmt.Println(strconv.Itoa(100))
+	// strconv.Atoi()
+	// 文字列を数値に変換する
+	i, _ := strconv.Atoi("100")
+	fmt.Println(i)
+	// strconv.ParseInt()
+	// 文字列を整数に変換する
+	i64, _ := strconv.ParseInt("100", 10, 64)
+	fmt.Println(i64)
+	fmt.Println(i)
+	// strconv.FormatInt()
+	// 整数を文字列に変換する
+	fmt.Println(strconv.FormatInt(100, 10))
+	// strconv.ParseFloat()
+	// 文字列を浮動小数点数に変換する
+	f, _ := strconv.ParseFloat("1.1", 64)
+	fmt.Println(f)
+	// strconv.FormatFloat()
+	// 浮動小数点数を文字列に変換する
+	fmt.Println(strconv.FormatFloat(1.1, 'f', -1, 64))
+	// strconv.ParseBool()
+	// 文字列を真偽値に変換する
+	b, _ := strconv.ParseBool("true")
+	fmt.Println(b)
+	// strconv.FormatBool()
+	// 真偽値を文字列に変換する
+	fmt.Println(strconv.FormatBool(true))
+	// strconv.Quote()
+	// 文字列をクォートする
+	fmt.Println(strconv.Quote("test"))
+	// strconv.QuoteToASCII()
+	// ASCII文字列をクォートする
+	fmt.Println(strconv.QuoteToASCII("test"))
+	// strconv.QuoteRune()
+	// ルーンをクォートする
+	fmt.Println(strconv.QuoteRune('a'))
+	// strconv.QuoteRuneToASCII()
+	// ASCIIルーンをクォートする
+	fmt.Println(strconv.QuoteRuneToASCII('a'))
+	// strconv.Unquote()
+	// クォートされた文字列をアンクォートする
+	fmt.Println(strconv.Unquote("\"test\""))
+	// strconv.AppendInt()
+	// 整数を文字列に追加する
+	byteSlice := []byte("test")
+	byteSlice = strconv.AppendInt(byteSlice, 100, 10)
+}
 
 
 
 func main() {
-	testLog()
+	testStrconv()
 }
