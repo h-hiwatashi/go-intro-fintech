@@ -362,6 +362,11 @@ func testStrconv(){
 
 // Stringsパッケージ
 func testStrings(){
+	// 文字列の結合
+	// strings.Join()
+	// 文字列を結合する
+
+
 	// strings.Contains()
 	// 文字列が含まれているか判定する
 	fmt.Println(strings.Contains("test", "es"))
@@ -404,10 +409,24 @@ func testStrings(){
 	// strings.TrimRight()
 	// 文字列の後の指定した文字列を削除する
 	fmt.Println(strings.TrimRight("test", "t"))
+
+	// Repeat
+	// 文字列を繰り返す
+	fmt.Println(strings.Repeat("test", 3))
+
+	// Split
+	// 文字列を分解する
+	fmt.Println(strings.Split("test", "e"))
+
+	// TimeSpace
+	// 文字列の前後の空白を削除する
+	fmt.Println(strings.TrimSpace(" test "))
+
+	
 }
 
 
 
 func main() {
-	testStrconv()
+	testStrings()
 }
