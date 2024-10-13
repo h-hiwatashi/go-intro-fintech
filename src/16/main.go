@@ -421,12 +421,22 @@ func testStrings(){
 	// TimeSpace
 	// 文字列の前後の空白を削除する
 	fmt.Println(strings.TrimSpace(" test "))
+}
 
-	
+// bufioパッケージ
+func testBufio(){
+	// bufio.NewReader()
+	// io.Readerからバッファリングされたリーダーを作成する
+	// bufio.NewWriter()
+	// io.Writerにバッファリングされたライターを作成する
+	// bufio.NewScanner()
+	// io.Readerからスキャナーを作成する
+	// bufio.Scan()
+	// スキャナーを使用してテキストをスキャンする
 }
 
 
 
 func main() {
-	testStrings()
+	testBufio()
 }
