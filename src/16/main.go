@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	"log"
@@ -425,14 +426,15 @@ func testStrings(){
 
 // bufioパッケージ
 func testBufio(){
-	// bufio.NewReader()
-	// io.Readerからバッファリングされたリーダーを作成する
-	// bufio.NewWriter()
-	// io.Writerにバッファリングされたライターを作成する
-	// bufio.NewScanner()
-	// io.Readerからスキャナーを作成する
-	// bufio.Scan()
-	// スキャナーを使用してテキストをスキャンする
+	// 標準入力を行単位で読み込む
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+	// スキャンに失敗した場合のエラーを取得する
+	if err := scanner.Err(); err != nil {
+		fmt.Fprintln(os.Stderr, "読み込みエラー:", err)
+	}
 }
 
 
