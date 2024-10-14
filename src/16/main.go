@@ -9,6 +9,7 @@ import (
 	"math"
 	"math/rand"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -468,10 +469,158 @@ func testIoutil(){
 	if err := ioutil.WriteFile("bar.txt", bs, 0666); err != nil {
 		log.Fatalln(err)
 	}
+}
+
+// regexpパッケージ
+func testRegexp(){
+	// regexp.Compile()
+	// 正規表現をコンパイルする
+	// regexp.MustCompile()
+	// 正規表現をコンパイルする
+	// regexp.Match()
+	// 正規表現に一致するか判定する
+	// regexp.MatchString()
+	// 正規表現に一致するか判定する
+	// regexp.Find()
+	// 正規表現に一致する部分を取得する
+	// regexp.FindAll()
+	// 正規表現に一致する部分を全て取得する
+	// regexp.FindString()
+	// 正規表現に一致する部分を取得する
+	// regexp.FindAllString()
+	// 正規表現に一致する部分を全て取得する
+	// regexp.ReplaceAll()
+	// 正規表現に一致する部分を置換する
+	// regexp.ReplaceAllString()
+	// 正規表現に一致する部分を置換する
+	// regexp.Split()
+	// 正規表現に一致する部分で分割する
+	// regexp.QuoteMeta()
+	// メタ文字をエスケープする
+
+	// Goの正規表現の基本の書き方
+	// MatchString
+	match, _ := regexp.MatchString("a([a-z]+)e", "apple")
+	fmt.Println(match)
+
+	// MatchStringは、正規表現に一致するか判定するが
+	// 大容量のデータを扱うにはそのままでは使いにくい
+	// 正規表現をコンパイルして使うことで、高速に処理することができる
+	// Compile
+	re1, _ := regexp.Compile("a([a-z]+)e")
+	fmt.Println(re1.MatchString("apple"))
+
+	// MustCompile
+	// こちらの方がよく使われる
+	re2 := regexp.MustCompile("a([a-z]+)e")
+	fmt.Println(re2.MatchString("apple"))
+
+	// エスケープ
+	// メタ文字をエスケープする
+	regexp.QuoteMeta("\\d")
+	// バッククォートで囲むとバクスラは不要
+	regexp.QuoteMeta(`a^b.c`)
+
+	// 正規表現のフラグ
+	// 正規表現のフラグを指定することで、正規表現の挙動を変更することができる
+	// 正規表現のフラグは、正規表現の前に指定する
+	// (?i)は、大文字小文字を区別しない
+	// (?m)は、複数行モード
+	// (?s)は、ドットが改行にもマッチする
+	// (?U)は、非貪欲マッチ
+	re3 := regexp.MustCompile(`(?i)apple`)
+	fmt.Println(re3.MatchString("Apple"))
+
+	// 幅を持たない正規表現
+	// 正規表現には、幅を持たない正規表現と幅を持つ正規表現がある
+	// 幅を持たない正規表現は、文字列の一部に一致する
+	// ^ 文頭
+	// $ 文末
+	// \b 単語の境界
+	// \B 単語の境界以外
+	// \A 入力の先頭
+	// \z 入力の末尾
+	// \Z 入力の末尾または末尾の改行
+	re4 := regexp.MustCompile(`^apple$`) //使用頻度が高い！
+	fmt.Println(re4.MatchString("apple")) //true
+	fmt.Println(re4.MatchString("   apple")) //false
+	fmt.Println(re4.MatchString("apple   ")) //false
+
+	// 繰り返しを表す正規表現
+	// 正規表現には、繰り返しを表す正規表現がある
+	// * 0回以上の繰り返し
+	// + 1回以上の繰り返し
+	// ? 0回または1回の繰り返し
+	// {n} n回の繰り返し
+	// {n,} n回以上の繰り返し
+	// {n,m} n回以上m回以下の繰り返し
+	re5 := regexp.MustCompile(`a+`)
+	fmt.Println(re5.MatchString("a")) //true
+	fmt.Println(re5.MatchString("aa")) //true
+	fmt.Println(re5.MatchString("aaa")) //true
+	fmt.Println(re5.MatchString("b")) //false
+
+	// 正規表現の文字クラス
+	// 正規表現には、文字クラスを表す正規表現がある
+	// [] 文字クラス
+	// [a-z] aからzまでの文字
+	// [^a-z] aからz以外の文字
+	// [a-zA-Z] aからzとAからZまでの文字
+	// [0-9] 0から9までの数字
+	// [^0-9] 0から9以外の文字
+	// [a-z0-9] aからzと0から9までの文字
+	re6 := regexp.MustCompile(`[a-z]+`)
+	fmt.Println(re6.MatchString("apple")) //true
+	fmt.Println("///")
+	fmt.Println(re6.MatchString("Apple")) //true
+	fmt.Println(re6.MatchString("123")) //false
+
+	// 正規表現のグループ
+	// 正規表現には、グループを表す正規表現がある
+	// () グループ
+	// (a|b) aまたはb
+	// (?:a) キャプチャしないグループ
+	// (?P<name>a) 名前付きグループ
+	re7 := regexp.MustCompile(`(a|A)(z|Z)`)
+	fmt.Println(re7.MatchString("az")) //true
+	fmt.Println(re7.MatchString("aZ")) //true
+	fmt.Println(re7.MatchString("Az")) //true
+	fmt.Println(re7.MatchString("AA")) //false
+
+	//FindString
+	// 正規表現に一致する部分を取得する
+	re8 := regexp.MustCompile(`(a|A)(z|Z)`)
+	fmt.Println(re8.FindString("ABCXYZ")) //nil
+	fmt.Println(re8.FindString("ABCXYZAZAZAZ")) //AZ
+	fmt.Println(re8.FindString("banana")) //nil
+	//FindAllString
+	// 正規表現に一致する部分を全て取得する
+	//代に引数に-1を指定すると、全ての一致する部分を取得する
+	fmt.Println(re8.FindAllString("ABCXYZAZAZAZ", -1)) //[AZ AZ AZ]
+
+	// 正規表現に一致する部分を取得する
+	// FindStringSubmatch
+	// 正規表現に一致する部分を全て取得する
+	// FindAllStringSubmatch
+	// 第二引数に-1を指定すると、全ての一致する部分を取得する
+	re9 := regexp.MustCompile(`(\d+)-(\d+)-(\d+)`)
+	fmt.Println(re9.FindStringSubmatch("2024-10-13")) //[2024-10-13 2024 10 13]
+	//[[2024-10-13 2024 10 13] [2024-10-12 2024 10 12] [2024-10-15 2024 10 15]]
+	fmt.Println(re9.FindAllStringSubmatch("2024-10-13 2024-10-12 2024-10-15", -1))
+
+	// 正規表現に一致する部分を置換する
+	// ReplaceAllString
+	re10 := regexp.MustCompile(`(\d+)-(\d+)-(\d+)`)
+	fmt.Println(re10.ReplaceAllString("2024-10-13", "$3/$2/$1")) //13/10/2024
+
+	// 正規表現に一致する部分で分割する
+	// Split
+	re11 := regexp.MustCompile(`\s+`)
+	fmt.Println(re11.Split("a b c", -1)) //[a b c]
 
 }
 
 
 func main() {
-	testIoutil()
+	testRegexp()
 }
