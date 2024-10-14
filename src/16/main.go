@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"math"
 	"math/rand"
@@ -438,7 +439,39 @@ func testBufio(){
 }
 
 
+// ioutilパッケージ
+func testIoutil(){
+	// ioutil.ReadFile()
+	// ファイルを読み込む
+	// ioutil.WriteFile()
+	// ファイルに書き込む
+	// ioutil.TempFile()
+	// 一時ファイルを作成する
+	// ioutil.TempDir()
+	// 一時ディレクトリを作成する
+	// ioutil.ReadDir()
+	// ディレクトリの内容を取得する
+	// ioutil.NopCloser()
+	// io.ReadCloserを返す
+	// ioutil.Discard
+	// io.Writerの破棄先
+
+
+
+	//入力全体を読み込む
+	// 大容量のファイルを読み込む場合は、一度に全てのデータを読み込むのではなく、一部ずつ読み込むことが推奨されている
+	f, _ := os.Open("foo.txt")
+	bs, _ := ioutil.ReadAll(f)
+	fmt.Println(string(bs))
+
+	// ファイルに書き込む
+	if err := ioutil.WriteFile("bar.txt", bs, 0666); err != nil {
+		log.Fatalln(err)
+	}
+
+}
+
 
 func main() {
-	testBufio()
+	testIoutil()
 }
