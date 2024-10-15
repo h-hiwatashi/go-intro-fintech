@@ -6,6 +6,7 @@ import (
 	"crypto/sha1"
 	"crypto/sha256"
 	"crypto/sha512"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
@@ -679,8 +680,61 @@ func testCrypto(){
 	// => 9989a8fcbc29044b5883a0a36c146fe7415b1439e995b4d806ea0af7da9ca4390eb92a604b3ecfa3d75f9911c768fbe2aecc59eff1e48dcaeca1957bdde01dfb
 }
 
+// Jsonパッケージ
+func testJson(){
+	// jsonパッケージ
+	// JSON形式のデータを扱う
+	// json.Marshal()
+	// GoのデータをJSON形式に変換する
+	// json.Unmarshal()
+	// JSON形式のデータをGoのデータに変換する
+	// json.NewEncoder()
+	// JSON形式のデータをエンコードする
+	// json.NewDecoder()
+	// JSON形式のデータをデコードする
+
+	u :=new(User)
+	u.ID = 1
+	u.Name = "test"
+	u.Age = 20
+	u.Email = "email.com"
+	// u.A = A{}
+	// Json形式に変換する
+	// Marshal
+	// byteのスライスに変換する
+	bs, err := json.Marshal(u)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(string(bs))
+
+	u2 := new(User)
+	// JSON形式のデータをGoのデータに変換する
+	// Unmarshal
+	if err := json.Unmarshal(bs, u2); err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(u2)
+
+	// MarchalJSON
+	// JSON形式に変換する時に編集できる
+	// UnmarchalJSON
+	// JSON形式のデータをStructに変換する時に編集できる
+
+}
+//jsonに変換した時の形式を指定する
+type User struct {
+	ID   int    `json:"id"`
+	Name string `json:"name,string"` //jsonに変換する時にstringに変換する
+	Age  int    `json:"-"` //jsonに変換しない
+	Email string `json:"email"`
+	A   *A      `json:"a,omitempty"`//値が空の場合は出力しない
+}
+type A struct {}
+
+
 
 
 func main() {
-	testCrypto()
+	testJson()
 }
