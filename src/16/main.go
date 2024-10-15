@@ -2,8 +2,10 @@ package main
 
 import (
 	"bufio"
+	"crypto/md5"
 	"flag"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"math"
@@ -617,10 +619,41 @@ func testRegexp(){
 	// Split
 	re11 := regexp.MustCompile(`\s+`)
 	fmt.Println(re11.Split("a b c", -1)) //[a b c]
+}
 
+// criptoパッケージ
+func testCrypto(){
+	// cryptoパッケージ
+	// 暗号化と復号化を行う
+	// crypto/aes
+	// crypto/cipher
+	// crypto/des
+	// crypto/dsa
+	// crypto/ecdsa
+	// crypto/elliptic
+	// crypto/hmac
+	// crypto/md5
+	// crypto/rand
+	// crypto/rc4
+	// crypto/rsa
+	// crypto/sha1
+	// crypto/sha256
+	// crypto/sha512
+	// crypto/subtle
+	// crypto/tls
+	// crypto/x509
+
+	//MD5ハッシュ値を計算する
+	h:=md5.New()
+	io.WriteString(h, "test")
+	fmt.Println(h.Sum(nil))
+	
+	s:= fmt.Sprintf("%x", h.Sum(nil))
+	fmt.Println(s)
 }
 
 
+
 func main() {
-	testRegexp()
+	testCrypto()
 }
