@@ -16,6 +16,7 @@ import (
 	"math/rand"
 	"os"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -762,7 +763,64 @@ type User struct {
 }
 type A struct {}
 
+// sortパッケージ
+func testSort(){
+	// sortパッケージ
+	// スライスをソートする
 
+	// sort.Ints()
+	// int型のスライスをソートする
+
+	// sort.Float64s()
+	// float64型のスライスをソートする
+
+	// sort.Strings()
+	// string型のスライスをソートする
+
+	// sort.Slice()
+	// スライスをソートする
+
+	// sort.Search()
+	// ソートされたスライスから値を検索する
+
+	// sort.SearchInts()
+	// ソートされたint型のスライスから値を検索する
+
+	// sort.SearchFloat64s()
+	// ソートされたfloat64型のスライスから値を検索する
+
+	// sort.SearchStrings()
+	// ソートされたstring型のスライスから値を検索する
+
+	// sort.SearchSlice()
+	// ソートされたスライスから値を検索する
+
+	// sort.Reverse()
+	// スライスを逆順にする
+
+	// sort.IsSorted()
+	// スライスがソートされているか判定する
+
+	// sort.Stable()
+	// 安定ソートを行う
+
+	// sort.Interface
+	type Enty struct {
+		Name string
+		Age  int
+	}
+
+	el := []Enty{{"A", 3}, {"F", 1}, {"i", 4}, {"b",1}, {"t", 5}, {"y",9}, {"c", 2}}
+	sort.Slice(el, func(i, j int) bool {
+		return el[i].Name < el[j].Name
+	});
+	fmt.Println(el)
+
+	sort.SliceStable(el, func(i, j int) bool {
+		return el[i].Name < el[j].Name
+	});
+	fmt.Println(el)
+}
 
 
 func main() {
