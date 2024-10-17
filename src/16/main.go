@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"context"
 	"crypto/md5"
 	"crypto/sha1"
 	"crypto/sha256"
@@ -820,6 +821,39 @@ func testSort(){
 		return el[i].Name < el[j].Name
 	});
 	fmt.Println(el)
+}
+
+// contextパッケージ
+func testContext(){
+	// contextパッケージ
+	// ゴルーチン間で値を共有する
+	// context.Context
+	// ゴルーチン間で値を共有する
+	// context.Background()
+	// 空のContextを作成する
+	// context.TODO()
+	// 未実装のContextを作成する
+	// context.WithValue()
+	// Contextに値を設定する
+	// context.WithCancel()
+	// Contextをキャンセルする
+	// context.WithDeadline()
+	// Contextに期限を設定する
+	// context.WithTimeout()
+	// Contextにタイムアウト
+
+	ch := make(chan string)
+	ctx := context.Background()
+	ctx, cancel := context.WithTimeout(ctx, 1*time.Second)
+	defer cancel()
+	go func() {
+		fmt.Println("start")
+		time.Sleep(2 * time.Second)
+		fmt.Println("end")
+		ch <- "result"
+	}()
+
+
 }
 
 
