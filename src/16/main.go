@@ -18,6 +18,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -625,6 +626,35 @@ func testRegexp(){
 	fmt.Println(re11.Split("a b c", -1)) //[a b c]
 }
 
+// syncパッケージ
+func testSync(){
+	// レースコンディション
+	// 複数のゴルーチンが同時に同じ変数にアクセスすることで、予期しない結果が発生すること
+	// レースコンディションを避けるためには、排他制御を行う必要がある
+	// sync.Mutex
+	// 排他制御を行う
+	// sync.RWMutex
+	// 読み込みと書き込みの排他制御を行う
+	// sync.WaitGroup
+	// ゴルーチンの完了を待つ
+	// sync.Once
+	// 一度だけ実行する
+	// sync.Cond
+	// ゴルーチン間での通信を行う
+
+	var mutex *sync.Mutex
+	mutex.Lock()
+	mutex.Unlock()
+
+	wg := new(sync.WaitGroup)
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		fmt.Println("A")
+	}()
+	wg.Wait()
+}
+
 // criptoパッケージ
 func testCrypto(){
 	// cryptoパッケージ
@@ -662,17 +692,17 @@ func testCrypto(){
     io.WriteString(s1, "ABCDE")
     fmt.Printf("%x\n", s1.Sum(nil))
     // => f0393febe8baaa55e32f7be2a7cc180bf34e52137d99e056c817a9c07b8f239a
- 
+
     //------------------------------
- 
+
     /* SHA-256 */
     s256 := sha256.New()
     io.WriteString(s256, "ABCDE")
     fmt.Printf("%x\n", s256.Sum(nil))
     // => f0393febe8baaa55e32f7be2a7cc180bf34e52137d99e056c817a9c07b8f239a
- 
+
     //------------------------------
- 
+
     /* SHA-512 */
     s512 := sha512.New()
     io.WriteString(s512, "ABCDE")
