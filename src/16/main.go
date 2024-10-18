@@ -15,6 +15,7 @@ import (
 	"log"
 	"math"
 	"math/rand"
+	"net/url"
 	"os"
 	"regexp"
 	"sort"
@@ -852,11 +853,33 @@ func testContext(){
 		fmt.Println("end")
 		ch <- "result"
 	}()
+}
 
+// net/urlパッケージ
+func testUrl(){
+	// net/urlパッケージ
+	// URLをパースする
+	// url.Parse()
+	// URLをパースする
+	// url.ParseRequestURI()
+	// URLをパースする
+	// url.ParseQuery()
+	// クエリをパースする
+	// url.QueryEscape()
+	// クエリをエスケープする
+	// url.QueryUnescape()
+	// クエリをアンエスケープする
 
+	// URLをパースする
+	u, _ := url.Parse("https://example.com:8080/path?key=value#fragment")
+	fmt.Println(u.Scheme)
+	fmt.Println(u.Host)
+	fmt.Println(u.Path)
+	fmt.Println(u.RawQuery)
+	fmt.Println(u.Fragment)
 }
 
 
 func main() {
-	testJson()
+	testUrl()
 }
