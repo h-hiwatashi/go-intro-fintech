@@ -877,7 +877,25 @@ func testUrl(){
 	fmt.Println(u.Path)
 	fmt.Println(u.RawQuery)
 	fmt.Println(u.Fragment)
+	// https
+	// example.com:8080
+	// /path
+	// key=value
+	// fragment
+
+	// URLを生成する
+	u2 := &url.URL{
+		Scheme:   "https",
+		Host:     "example.com:8080",
+	}
+	q:=u2.Query()
+	q.Set("q", "golang")
+	u2.RawQuery = q.Encode()
+	// https://example.com:8080?q=golang
+	fmt.Println(u2)
 }
+
+
 
 
 func main() {
