@@ -1048,7 +1048,11 @@ func testHttpClient(){
     // fmt.Println(string(body))
 }
 
+// net/http server
+func testServer(){
+	http.ListenAndServe(":8080", nil)
+}
 
 func main() {
-	testHttpClient()
+	testServer()
 }
