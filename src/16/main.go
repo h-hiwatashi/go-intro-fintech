@@ -1059,7 +1059,9 @@ func top(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	t.Execute(w, "Hello, World111")
+	// htmlファイルを解析して、テンプレートを作成する
+	// {{.}}を埋め込む
+	t.Execute(w, "こんにちは、Go")
 }
 
 func testServer(){
