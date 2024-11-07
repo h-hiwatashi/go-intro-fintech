@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"log"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -15,15 +14,22 @@ func main() {
 	Db, _ := sql.Open("sqlite3", "./example.sql")
 
 	defer Db.Close()
+	// データの追加
 	//　\で複数行の文字列を書く
-	// もしpersonsテーブルがなければ作成する
-		cmd := `CREATE TABLE IF NOT EXISTS persons(
-			name STRING,
-			age INT)`
+	// sqlインジェクションを防ぐために、?を使っている
+	// cmd := "INSERT INTO persons (name, age) VALUES (?, ?)"
+	// ?に入る値を引数に指定
+	// _, err := Db.Exec(cmd, "Hanako", 30)
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
 
-	
-	_, err := Db.Exec(cmd)
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// データの更新
+	// cmd := "UPDATE persons SET age = ? WHERE name = ?"
+	// _, err := Db.Exec(cmd, 22, "Nancy")
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
+
+	// データの取得
 }
