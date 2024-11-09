@@ -39,16 +39,34 @@ func main() {
 	// }
 
 	// データの取得
-	cmd := "SELECT * FROM persons where age = ?"
-	row := Db.QueryRow(cmd, 22)
-	var p Person
-	err := row.Scan(&p.Name, &p.Age)
-	if err != nil {
-		if err == sql.ErrNoRows {
-			log.Println("No row")
-		} else {
+	// cmd := "SELECT * FROM persons where age = ?"
+	// row := Db.QueryRow(cmd, 22)
+	// var p Person
+	// err := row.Scan(&p.Name, &p.Age)
+	// if err != nil {
+	// 	if err == sql.ErrNoRows {
+	// 		log.Println("No row")
+	// 	} else {
+	// 		log.Fatalln(err)
+	// 	}
+	// }
+	// fmt.Println(p.Name, p.Age)
+
+	// 複数データの取得
+	cmd := "SELECT * FROM persons"
+	rows, _ := Db.Query(cmd)
+	defer rows.Close()
+	var pp []Person
+	for rows.Next() {
+		var p Person
+		err := rows.Scan(&p.Name, &p.Age)
+		if err != nil {
 			log.Fatalln(err)
 		}
+		pp = append(pp, p)
 	}
-	fmt.Println(p.Name, p.Age)
+
+	for _, p := range pp {
+		fmt.Println(p.Name, p.Age)
+	}
 }
