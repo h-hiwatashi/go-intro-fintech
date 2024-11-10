@@ -52,10 +52,12 @@ func main() {
 	// }
 	// fmt.Println(p.Name, p.Age)
 
-	// 複数データの取得
+	// 複数データの取得(rows.Nextパターンで覚える)
 	cmd := "SELECT * FROM persons"
+	// 条件に合うデータを全て取得
 	rows, _ := Db.Query(cmd)
 	defer rows.Close()
+	// Personのスライスを作成
 	var pp []Person
 	for rows.Next() {
 		var p Person
@@ -63,10 +65,18 @@ func main() {
 		if err != nil {
 			log.Fatalln(err)
 		}
+		// Personのスライスに追加
 		pp = append(pp, p)
 	}
-
+	// 取得したデータをforループで表示
 	for _, p := range pp {
 		fmt.Println(p.Name, p.Age)
+	}
+
+	// データの削除
+	deleteCmd := "DELETE FROM persons WHERE name = ?"
+	_, err := Db.Exec(deleteCmd, "Hanako")
+	if err != nil {
+		log.Fatalln(err)
 	}
 }
