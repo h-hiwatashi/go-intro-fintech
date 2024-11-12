@@ -2,9 +2,9 @@ package main
 
 import (
 	"database/sql"
-	
-	- "github.com/lib/pq"
-}
+
+	_ "github.com/lib/pq"
+)
 
 var Db *sql.DB
 
@@ -17,4 +17,5 @@ func main() {
 	// DB名を指定してDBを開く
 	// 今回はexample.sql
 	Db, _ := sql.Open("postgres", "user=postgres")
+	defer Db.Close()
 }
