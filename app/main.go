@@ -7,6 +7,7 @@ import (
 
 	//使用しないため_でインポート
 	_ "github.com/lib/pq"
+	"gopkg.in/ini.v1"
 )
 
 var Db *sql.DB
@@ -14,6 +15,21 @@ var err error
 type Person struct {
 	Name string
 	Age  int
+}
+
+// アプリケーションの状態を初期化するために用いられる関数
+// パッケージ変数の初期化などに使われる
+// 引数を取らず、何も値を返さない
+// パッケージが初期化→パッケージ内の全ての定数と変数宣言が評価→init関数の実行
+func init(){
+	// iniファイルの読み込み
+	cfg, _ := ini.Load("config.ini")
+	// must系はデフォrト値を設定できる
+	Config = ConfigList{
+		Port: cfg.Section("web").Key("port").MustInt(8080),
+		Dbname: cfg.Section("db").Key("dbname").MustString("example.sql"),
+		SQLdriver: cfg.Section("db").Key("driver").String(),
+	}
 }
 
 func main() {
@@ -28,7 +44,10 @@ func main() {
 	defer Db.Close()
 
 	//create
-	update(Db)
+	// update(Db)
+	fmt.Printf("Port: %d\n", Config.Port)
+	fmt.Printf("Dbname: %s\n", Config.Dbname)
+	fmt.Printf("SQLdriver: %s\n", Config.SQLdriver)
 }
 
 func create(Db *sql.DB) {
@@ -93,3 +112,11 @@ func delete(Db *sql.DB) {
 		log.Fatalln(err)
 	}
 }
+
+// iniファイルの説明
+type ConfigList struct {
+	Port int
+	Dbname string
+	SQLdriver string
+}
+var Config ConfigList
