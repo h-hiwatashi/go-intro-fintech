@@ -6,6 +6,7 @@ import (
 	"log"
 
 	//使用しないため_でインポート
+	"github.com/google/uuid"
 	_ "github.com/lib/pq"
 	"gopkg.in/ini.v1"
 )
@@ -48,6 +49,8 @@ func main() {
 	fmt.Printf("Port: %d\n", Config.Port)
 	fmt.Printf("Dbname: %s\n", Config.Dbname)
 	fmt.Printf("SQLdriver: %s\n", Config.SQLdriver)
+
+	creatUuidSample()
 }
 
 func create(Db *sql.DB) {
@@ -120,3 +123,11 @@ type ConfigList struct {
 	SQLdriver string
 }
 var Config ConfigList
+
+func creatUuidSample(){
+	uuidObj, _ := uuid.NewUUID()
+	fmt.Println(uuidObj)
+
+	uuidObj2, _ := uuid.NewRandom()
+	fmt.Println(uuidObj2)
+}
