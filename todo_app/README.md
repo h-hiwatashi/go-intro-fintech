@@ -1,0 +1,27 @@
+# go-todolist
+
+# 機能
+
+## User
+
+作成（Create）
+取得（Read）
+更新（Update）
+削除（Delete）
+
+## Todo
+
+作成（Create）
+取得（シングルセレクト）（Read）
+取得（マルチセレクト）
+取得（マルチセレクト２）
+更新（Update）
+削除（Delete）
+
+# Front
+
+JQuery, Bootstarp
+
+# Infra
+
+heroku
