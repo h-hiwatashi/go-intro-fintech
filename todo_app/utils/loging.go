@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func logingSettings(logFile string){
+func LoggingSettings(logFile string){
 	// 06666 is the permission for the file
 	// logfileを読み込む
 	// ファイルがない場合は作成
