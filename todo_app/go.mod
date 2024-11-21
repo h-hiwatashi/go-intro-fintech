@@ -1,5 +1,8 @@
 module todo_app
 
-go 1.23.1
+go 1.19
 
-require gopkg.in/ini.v1 v1.67.0 // indirect
+require (
+	github.com/lib/pq v1.10.9
+	gopkg.in/ini.v1 v1.67.0 // indirect
+)

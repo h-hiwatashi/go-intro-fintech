@@ -9,7 +9,7 @@ services:
 
     # ホスト側のフォルダをマウントする
     volumes:
-      - ./app:/work
+      - .:/work
 
     working_dir: /work
 
