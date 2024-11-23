@@ -15,4 +15,10 @@ func main(){
 
 	fmt.Println(models.Db)
 	fmt.Println("Database setup complete")
+
+	u:= &models.User{}
+	u.Name = "test"
+	u.Email = "test@ecample.com"
+	u.Password = "test"
+	u.CreateUser()
 }
