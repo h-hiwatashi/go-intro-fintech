@@ -17,6 +17,7 @@ var err error
 
 const (
 	tabeleNameUser = "users"
+	tableNameTodo = "todos"
 )
 
 func init() {
@@ -39,6 +40,19 @@ func init() {
     if err != nil {
         log.Fatalln(err)
     }
+
+	cmdT := fmt.Sprintf(
+		`CREATE TABLE IF NOT EXISTS %s(
+			id SERIAL PRIMARY KEY,
+			uuid TEXT NOT NULL UNIQUE,
+			content TEXT,
+			user_id INTEGER,
+			created_at TIMESTAMP)`, tableNameTodo)
+	_, err = Db.Exec(cmdT)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
 }
 
 // UUIDを生成する関数

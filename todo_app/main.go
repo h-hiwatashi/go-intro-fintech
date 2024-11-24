@@ -24,15 +24,15 @@ func main(){
 	// u.CreateUser()
 
 	//GET USER
-	user, _ := models.GetUser(1)
-	fmt.Println(user)
+	// user, _ := models.GetUser(1)
+	// fmt.Println(user)
 
 	//UPDATE USER
-	user.Name = "test2"
-	user.Email = "test2@exmaple.com"
-	user.UpdateUser()
-	fmt.Println(user)
+	// user.Name = "test2"
+	// user.Email = "test2@exmaple.com"
+	// user.UpdateUser()
+	// fmt.Println(user)
 
 	//DELETE USER
-	user.DeleteUser()
+	// user.DeleteUser()
 }
