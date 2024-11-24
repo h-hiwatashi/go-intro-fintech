@@ -34,3 +34,25 @@ func GetTodo(id int) (todo Todo, err error) {
 	err = Db.QueryRow(cmd, id).Scan(&todo.ID, &todo.Content, &todo.UserId, &todo.CreatedAt)
 	return todo, err
 }
+
+func GetTodos() (todos []Todo, err error) {
+	cmd := `SELECT id, content, user_id, created_at FROM todos`
+	rows, err := Db.Query(cmd)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	// GetTodosはデータベースからすべてのtodoアイテムを取得します。
+	// todosテーブルからid、content、user_id、created_atフィールドを選択するSQLクエリを実行します。
+	// この関数はTodo構造体のスライスと、クエリの実行や行のスキャン中に発生したエラーを返します。
+	for rows.Next() {
+		var todo Todo
+		err = rows.Scan(&todo.ID, &todo.Content, &todo.UserId, &todo.CreatedAt)
+		if err != nil {
+			log.Fatalln(err)
+		}
+		todos = append(todos, todo)
+	}
+	// rows.Close()を呼び出して、データベースのコネクションを閉じます。
+	rows.Close()
+	return todos, err
+}

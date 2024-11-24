@@ -22,8 +22,8 @@ func main(){
 	// u.CreateUser()
 
 	//GET USER
-	// user, _ := models.GetUser(2)
-	// fmt.Println(user)
+	user, _ := models.GetUser(2)
+	fmt.Println(user)
 
 	//UPDATE USER
 	// user.Name = "test2"
@@ -35,10 +35,13 @@ func main(){
 	// user.DeleteUser()
 
 	//CREATE TODO
-	// user.CreateTodo("First todo")
+	user.CreateTodo("Second todo")
 
 	//GET TODO
 	todo, _ := models.GetTodo(3)
 	fmt.Println(todo)
+
+	todos, _ :=models.GetTodos()
+	fmt.Println(todos)
 
 }
