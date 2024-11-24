@@ -1,3 +1,5 @@
 2024/11/21 00:01:41 main.go:15: test
 2024/11/21 15:19:57 base.go:23: sql: unknown driver "sqlite" (forgotten import?)
 2024/11/21 15:42:30 base.go:38: pq: type "datetime" does not exist
+2024/11/24 13:49:26 todos.go:24: pq: null value in column "uuid" of relation "todos" violates not-null constraint
+2024/11/24 13:56:00 todos.go:24: pq: null value in column "uuid" of relation "todos" violates not-null constraint

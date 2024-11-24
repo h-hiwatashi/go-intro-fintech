@@ -11,21 +11,19 @@ func main(){
 	// fmt.Println(config.Config.DbName)
 	// fmt.Println(config.Config.LogFile)
 
-	// log.Println("test")
-
 	fmt.Println(models.Db)
 	fmt.Println("Database setup complete")
 
-	//CREATE USER
-	// u:= &models.User{}
-	// u.Name = "test"
-	// u.Email = "test@ecample.com"
-	// u.Password = "test"
-	// u.CreateUser()
+	// CREATE USER
+	u:= &models.User{}
+	u.Name = "test"
+	u.Email = "test@ecample.com"
+	u.Password = "test"
+	u.CreateUser()
 
 	//GET USER
-	// user, _ := models.GetUser(1)
-	// fmt.Println(user)
+	user, _ := models.GetUser(2)
+	fmt.Println(user)
 
 	//UPDATE USER
 	// user.Name = "test2"
@@ -35,4 +33,6 @@ func main(){
 
 	//DELETE USER
 	// user.DeleteUser()
+
+	user.CreateTodo("First todo")
 }
