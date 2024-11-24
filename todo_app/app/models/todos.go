@@ -25,3 +25,12 @@ func (u *User) CreateTodo(content string)(err error){
 	}
 	return err
 }
+
+// 引数なし、返り値がerrorのUpdateUserメソッドを追加
+func GetTodo(id int) (todo Todo, err error) {
+	todo = Todo{}
+	cmd := `SELECT id, content, user_id, created_at FROM todos WHERE id = $1`
+	// QueryRowメソッドを使ってSQLを実行
+	err = Db.QueryRow(cmd, id).Scan(&todo.ID, &todo.Content, &todo.UserId, &todo.CreatedAt)
+	return todo, err
+}

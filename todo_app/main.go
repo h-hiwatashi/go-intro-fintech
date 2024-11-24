@@ -15,15 +15,15 @@ func main(){
 	fmt.Println("Database setup complete")
 
 	// CREATE USER
-	u:= &models.User{}
-	u.Name = "test"
-	u.Email = "test@ecample.com"
-	u.Password = "test"
-	u.CreateUser()
+	// u:= &models.User{}
+	// u.Name = "test"
+	// u.Email = "test@ecample.com"
+	// u.Password = "test"
+	// u.CreateUser()
 
 	//GET USER
-	user, _ := models.GetUser(2)
-	fmt.Println(user)
+	// user, _ := models.GetUser(2)
+	// fmt.Println(user)
 
 	//UPDATE USER
 	// user.Name = "test2"
@@ -34,5 +34,11 @@ func main(){
 	//DELETE USER
 	// user.DeleteUser()
 
-	user.CreateTodo("First todo")
+	//CREATE TODO
+	// user.CreateTodo("First todo")
+
+	//GET TODO
+	todo, _ := models.GetTodo(3)
+	fmt.Println(todo)
+
 }
