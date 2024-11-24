@@ -37,7 +37,16 @@ func GetUser(id int) (user User, err error) {
 	cmd := `SELECT id, uuid, name, email, password, created_at FROM users WHERE id = $1`
 	// QueryRowメソッドを使ってSQLを実行
 	// Scanメソッドで取得したデータをuserに格納
-	
+
 	err = Db.QueryRow(cmd, id).Scan(&user.ID, &user.UUID, &user.Name, &user.Email, &user.Password, &user.CreatedAt)
 	return user, err
+}
+
+func (u *User) UpdateUser() (err error) {
+	cmd := `UPDATE users SET name = $1, email = $2 WHERE id = $3`
+	_, err = Db.Exec(cmd, u.Name, u.Email, u.ID)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return err
 }
