@@ -30,3 +30,14 @@ func (u *User) CreateUser() (err error) {
 	}
 	return err
 }
+
+// 引数なし、返り値がerrorのUpdateUserメソッドを追加
+func GetUser(id int) (user User, err error) {
+	user = User{}
+	cmd := `SELECT id, uuid, name, email, password, created_at FROM users WHERE id = $1`
+	// QueryRowメソッドを使ってSQLを実行
+	// Scanメソッドで取得したデータをuserに格納
+	
+	err = Db.QueryRow(cmd, id).Scan(&user.ID, &user.UUID, &user.Name, &user.Email, &user.Password, &user.CreatedAt)
+	return user, err
+}
