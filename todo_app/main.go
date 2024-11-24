@@ -16,13 +16,13 @@ func main(){
 
 	// CREATE USER
 	// u:= &models.User{}
-	// u.Name = "test"
-	// u.Email = "test@ecample.com"
+	// u.Name = "test2"
+	// u.Email = "test2@ecample.com"
 	// u.Password = "test"
 	// u.CreateUser()
 
 	//GET USER
-	user, _ := models.GetUser(2)
+	user, _ := models.GetUser(3)
 	fmt.Println(user)
 
 	//UPDATE USER
@@ -35,13 +35,17 @@ func main(){
 	// user.DeleteUser()
 
 	//CREATE TODO
-	user.CreateTodo("Second todo")
+	// user.CreateTodo("Third todo")
 
 	//GET TODO
-	todo, _ := models.GetTodo(3)
-	fmt.Println(todo)
+	// todo, _ := models.GetTodo(3)
+	// fmt.Println(todo)
 
-	todos, _ :=models.GetTodos()
+	// todos, _ :=models.GetTodos()
+	// fmt.Println(todos)
+
+	user2, _ := models.GetUser(3)
+	todos, _ := user2.GetTodosByUser()
 	fmt.Println(todos)
 
 }
