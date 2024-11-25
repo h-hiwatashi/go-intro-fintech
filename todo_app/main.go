@@ -49,7 +49,12 @@ func main(){
 	// fmt.Println(todos)
 
 	todo, _ := models.GetTodo(3)
-	todo.Content = "Updated content"
-	todo.UpdateTodo()
+
+	// UPDATE TODO
+	// todo.Content = "Updated content"
+	// todo.UpdateTodo()
+
+	// DELETE TODO
+	todo.DeleteTodo()
 
 }
