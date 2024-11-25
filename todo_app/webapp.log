@@ -3,3 +3,5 @@
 2024/11/21 15:42:30 base.go:38: pq: type "datetime" does not exist
 2024/11/24 13:49:26 todos.go:24: pq: null value in column "uuid" of relation "todos" violates not-null constraint
 2024/11/24 13:56:00 todos.go:24: pq: null value in column "uuid" of relation "todos" violates not-null constraint
+2024/11/25 14:03:42 todos.go:82: pq: invalid input syntax for type integer: ""
+2024/11/25 14:03:50 todos.go:82: pq: invalid input syntax for type integer: ""

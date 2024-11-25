@@ -44,8 +44,12 @@ func main(){
 	// todos, _ :=models.GetTodos()
 	// fmt.Println(todos)
 
-	user2, _ := models.GetUser(3)
-	todos, _ := user2.GetTodosByUser()
-	fmt.Println(todos)
+	// user2, _ := models.GetUser(3)
+	// todos, _ := user2.GetTodosByUser()
+	// fmt.Println(todos)
+
+	todo, _ := models.GetTodo(3)
+	todo.Content = "Updated content"
+	todo.UpdateTodo()
 
 }

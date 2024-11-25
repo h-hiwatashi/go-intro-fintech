@@ -74,3 +74,12 @@ func (u *User) GetTodosByUser() (todos []Todo, err error) {
 	rows.Close()
 	return todos, err
 }
+
+func (t *Todo) UpdateTodo() (err error) {
+	cmd := `UPDATE todos SET content = $1, user_id = $2 WHERE id = $3`
+	_, err = Db.Exec(cmd, t.Content, t.UserId ,t.ID)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return err
+}
