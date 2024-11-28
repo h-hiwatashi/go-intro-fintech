@@ -22,5 +22,5 @@ func top(w http.ResponseWriter, r *http.Request){
     //     log.Fatal(err)
     // }
 
-	generateHTML(w, "Hello", "layout", "top")
+	generateHTML(w, "Hello", "layout", "public_navbar", "top")
 }
