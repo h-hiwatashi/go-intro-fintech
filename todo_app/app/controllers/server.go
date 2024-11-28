@@ -37,5 +37,6 @@ func StartMainServer()error{
 	// デフォルトのマルチプレクサは、404
 	// 今回は、"/"にアクセスしたときにtop関数を呼び出すように設定している
 	http.HandleFunc("/", top)
+	http.HandleFunc("/signup", signup)
 	return http.ListenAndServe(":" + config.Config.Port, nil)
 }
