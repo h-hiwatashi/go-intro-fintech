@@ -38,5 +38,6 @@ func StartMainServer()error{
 	// 今回は、"/"にアクセスしたときにtop関数を呼び出すように設定している
 	http.HandleFunc("/", top)
 	http.HandleFunc("/signup", signup)
+	http.HandleFunc("/login", login)
 	return http.ListenAndServe(":" + config.Config.Port, nil)
 }
