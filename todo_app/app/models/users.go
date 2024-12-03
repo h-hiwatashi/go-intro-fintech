@@ -14,6 +14,15 @@ type User struct {
 	CreatedAt time.Time
 }
 
+// セッション情報を格納する構造体を追加
+type Session struct {
+	ID int
+	UUID string
+	Email string
+	UserID int
+	CreatedAt time.Time
+}
+
 // 引数なし、返り値がerrorのCreateUserメソッドを追加
 func (u *User) CreateUser() (err error) {
 	cmd := `INSERT INTO users (
@@ -58,4 +67,12 @@ func (u *User) DeleteUser() (err error) {
 		log.Fatalln(err)
 	}
 	return err
+}
+
+func GetUserByEmail(email string) (user User, err error) {
+	user = User{}
+	cmd := `SELECT id, uuid, name, email, password, created_at FROM users WHERE email = $1`
+	// 一つのデータのためQueryRowメソッドを使ってSQLを実行
+	err = Db.QueryRow(cmd, email).Scan(&user.ID, &user.UUID, &user.Name, &user.Email, &user.Password, &user.CreatedAt)
+	return user, err
 }
