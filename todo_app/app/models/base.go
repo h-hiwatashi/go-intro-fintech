@@ -18,6 +18,8 @@ var err error
 const (
 	tabeleNameUser = "users"
 	tableNameTodo = "todos"
+	// セッション保存用のテーブル
+	tableNameSession = "sessions"
 )
 
 func init() {
@@ -49,6 +51,19 @@ func init() {
 			user_id INTEGER,
 			created_at TIMESTAMP)`, tableNameTodo)
 	_, err = Db.Exec(cmdT)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	// セッション保存用のテーブルを作成
+	cmdS := fmt.Sprintf(
+		`CREATE TABLE IF NOT EXISTS %s(
+			id SERIAL PRIMARY KEY,
+			uuid TEXT NOT NULL UNIQUE,
+			email TEXT,
+			user_id INTEGER,
+			created_at TIMESTAMP)`, tableNameSession)
+	_, err = Db.Exec(cmdS)
 	if err != nil {
 		log.Fatalln(err)
 	}
