@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"todo_app/app/controllers"
 	"todo_app/app/models"
 )
 
@@ -9,17 +10,17 @@ func main(){
 	fmt.Println(models.Db)
 	fmt.Println("Database setup complete")
 
-	// controllers.StartMainServer()
+	controllers.StartMainServer()
 
-	user, _ := models.GetUserByEmail("test1@test.com")
-	fmt.Println(user)
+	// user, _ := models.GetUserByEmail("test1@test.com")
+	// fmt.Println(user)
 
-	session, err := user.CreateSession()
-	if err != nil {
-		fmt.Println("Session creation failed")
-	}
-	fmt.Println(session)
+	// session, err := user.CreateSession()
+	// if err != nil {
+	// 	fmt.Println("Session creation failed")
+	// }
+	// fmt.Println(session)
 
-	valid ,_ := session.CheckSession()
-	fmt.Println(valid)
+	// valid ,_ := session.CheckSession()
+	// fmt.Println(valid)
 }
