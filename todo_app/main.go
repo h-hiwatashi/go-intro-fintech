@@ -19,4 +19,7 @@ func main(){
 		fmt.Println("Session creation failed")
 	}
 	fmt.Println(session)
+
+	valid ,_ := session.CheckSession()
+	fmt.Println(valid)
 }
