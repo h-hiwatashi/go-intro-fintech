@@ -13,4 +13,10 @@ func main(){
 
 	user, _ := models.GetUserByEmail("test1@test.com")
 	fmt.Println(user)
+
+	session, err := user.CreateSession()
+	if err != nil {
+		fmt.Println("Session creation failed")
+	}
+	fmt.Println(session)
 }

@@ -76,3 +76,26 @@ func GetUserByEmail(email string) (user User, err error) {
 	err = Db.QueryRow(cmd, email).Scan(&user.ID, &user.UUID, &user.Name, &user.Email, &user.Password, &user.CreatedAt)
 	return user, err
 }
+
+func (u *User) CreateSession() (session Session, err error) {
+	// セッション情報を格納する構造体を追加
+	session = Session{}
+	// セッション情報を保存するSQLを追加
+	cmd1 := `INSERT INTO sessions (
+		uuid,
+		email,
+		user_id,
+		created_at) VALUES ($1, $2, $3, $4)`
+
+	_, err = Db.Exec(cmd1, createUUID(), u.Email, u.ID, time.Now())
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	cmd2 := `SELECT id, uuid, email, user_id, created_at FROM sessions WHERE user_id = $1 AND email = $2`
+	// セッション情報を取得するSQLを追加
+	// QueryRowメソッドを使ってSQLを実行
+	// Scanメソッドで取得したデータをsessionに格納
+	err = Db.QueryRow(cmd2, u.ID, u.Email).Scan(&session.ID, &session.UUID, &session.Email, &session.UserID, &session.CreatedAt)
+	return session, err
+}
