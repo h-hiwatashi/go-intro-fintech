@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"todo_app/app/models"
 	"todo_app/config"
 )
 
@@ -20,6 +21,21 @@ func generateHTML(w http.ResponseWriter, data interface{}, filenames ...string) 
 
 	//difineでテンプレートを定義した場合、ExecuteTemplateでlayoutを明示的に指定する必要がある
 	templates.ExecuteTemplate(w, "layout", data)
+}
+
+func session (w http.ResponseWriter, r *http.Request)(sess models.Session, err error){
+	// クッキーを取得
+	cookie, err := r.Cookie("_cookie")
+	if err == nil {
+		// クッキーがある場合
+		// クッキーの値を使ってセッションを取得
+		sess = models.Session{UUID: cookie.Value}
+		// セッションが有効かどうかをチェック
+		if ok, _ := sess.CheckSession(); !ok {
+			err = fmt.Errorf("Invalid session")
+		}
+	}
+	return sess, err
 }
 
 // StartMainServer関数を追加
