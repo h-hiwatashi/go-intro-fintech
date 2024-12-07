@@ -22,7 +22,15 @@ func top(w http.ResponseWriter, r *http.Request){
     //     log.Fatal(err)
     // }
 
-	generateHTML(w, "Hello", "layout", "public_navbar", "top")
+	_, err := session(w, r)
+	// sessionがなくてerrがnilでない場合、topページにリダイレクト
+	if err != nil {
+		generateHTML(w, "Hello", "layout", "public_navbar", "top")
+	}else{
+		// sessionがある場合、indexページを表示
+		http.Redirect(w, r, "/todos", 302)
+	}
+
 }
 
 // index関数を追加
