@@ -54,6 +54,7 @@ func StartMainServer() error {
 	// 今回は、"/"にアクセスしたときにtop関数を呼び出すように設定している
 	http.HandleFunc("/signup", signup)
 	http.HandleFunc("/login", login)
+	http.HandleFunc("/logout", logout)
 	http.HandleFunc("/authenticate", authenticate)
 	// ログインしてるアカウントしか見れないページ
 	http.HandleFunc("/", top)
