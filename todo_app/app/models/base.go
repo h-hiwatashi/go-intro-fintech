@@ -17,7 +17,7 @@ var err error
 
 const (
 	tabeleNameUser = "users"
-	tableNameTodo = "todos"
+	tableNameTodo  = "todos"
 	// セッション保存用のテーブル
 	tableNameSession = "sessions"
 )
@@ -29,7 +29,6 @@ func init() {
 		log.Fatalln(err)
 	}
 
-
 	comU := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s(
         id SERIAL PRIMARY KEY,
 		uuid TEXT NOT NULL UNIQUE,
@@ -38,10 +37,10 @@ func init() {
 		password TEXT,
 		created_at TIMESTAMP)`, tabeleNameUser)
 	// Dbインスタンスを使ってSQLを実行する
-    _, err = Db.Exec(comU)
-    if err != nil {
-        log.Fatalln(err)
-    }
+	_, err = Db.Exec(comU)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	cmdT := fmt.Sprintf(
 		`CREATE TABLE IF NOT EXISTS %s(

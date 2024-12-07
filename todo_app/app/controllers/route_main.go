@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-func top(w http.ResponseWriter, r *http.Request){
+func top(w http.ResponseWriter, r *http.Request) {
 	// ParseFiles関数を使って、テンプレートファイルをパースする
 	// htmlテンプレートファイルをパースし、テンプレートオブジェクトが返される
 	// テンプレートオブジェクトのExecuteメソッドを使って、テンプレートをブラウザにレンダリングする
@@ -19,14 +19,14 @@ func top(w http.ResponseWriter, r *http.Request){
 	// テンプレートファイルには、{{.}}という記述があり、これはExecuteメソッドの第二引数で渡したデータを埋め込む場所を示している
 	// err = t.Execute(w, "Hello")
 	// if err != nil {
-    //     log.Fatal(err)
-    // }
+	//     log.Fatal(err)
+	// }
 
 	_, err := session(w, r)
 	// sessionがなくてerrがnilでない場合、topページにリダイレクト
 	if err != nil {
 		generateHTML(w, "Hello", "layout", "public_navbar", "top")
-	}else{
+	} else {
 		// sessionがある場合、indexページを表示
 		http.Redirect(w, r, "/todos", 302)
 	}
@@ -34,15 +34,15 @@ func top(w http.ResponseWriter, r *http.Request){
 }
 
 // index関数を追加
-func index(w http.ResponseWriter, r *http.Request){
+func index(w http.ResponseWriter, r *http.Request) {
 	// session関数を使って、セッションを取得
 	// session自体は使わないので、_で受け取る
 	_, err := session(w, r)
 	// sessionがなくてerrがnilでない場合、topページにリダイレクト
 	if err != nil {
 		http.Redirect(w, r, "/l", 302)
-	}else{
+	} else {
 		// sessionがある場合、indexページを表示
-		generateHTML(w, nil, "layout", "private_navbar","index")
+		generateHTML(w, nil, "layout", "private_navbar", "index")
 	}
 }

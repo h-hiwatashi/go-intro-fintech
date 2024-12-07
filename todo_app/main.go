@@ -6,7 +6,7 @@ import (
 	"todo_app/app/models"
 )
 
-func main(){
+func main() {
 	fmt.Println(models.Db)
 	fmt.Println("Database setup complete")
 

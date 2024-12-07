@@ -5,14 +5,14 @@ import (
 	"time"
 )
 
-type Todo struct{
-	ID int
-	Content string
-	UserId string
+type Todo struct {
+	ID        int
+	Content   string
+	UserId    string
 	CreatedAt time.Time
 }
 
-func (u *User) CreateTodo(content string)(err error){
+func (u *User) CreateTodo(content string) (err error) {
 	cmd := `INSERT INTO todos (
 	content,
 	user_id,
@@ -77,7 +77,7 @@ func (u *User) GetTodosByUser() (todos []Todo, err error) {
 
 func (t *Todo) UpdateTodo() (err error) {
 	cmd := `UPDATE todos SET content = $1, user_id = $2 WHERE id = $3`
-	_, err = Db.Exec(cmd, t.Content, t.UserId ,t.ID)
+	_, err = Db.Exec(cmd, t.Content, t.UserId, t.ID)
 	if err != nil {
 		log.Fatalln(err)
 	}

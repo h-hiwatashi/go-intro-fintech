@@ -17,13 +17,13 @@ func generateHTML(w http.ResponseWriter, data interface{}, filenames ...string) 
 	}
 
 	// エラーの時はpanic
-	templates:= template.Must(template.ParseFiles(files...))
+	templates := template.Must(template.ParseFiles(files...))
 
 	//difineでテンプレートを定義した場合、ExecuteTemplateでlayoutを明示的に指定する必要がある
 	templates.ExecuteTemplate(w, "layout", data)
 }
 
-func session (w http.ResponseWriter, r *http.Request)(sess models.Session, err error){
+func session(w http.ResponseWriter, r *http.Request) (sess models.Session, err error) {
 	// クッキーを取得
 	cookie, err := r.Cookie("_cookie")
 	if err == nil {
@@ -39,7 +39,7 @@ func session (w http.ResponseWriter, r *http.Request)(sess models.Session, err e
 }
 
 // StartMainServer関数を追加
-func StartMainServer()error{
+func StartMainServer() error {
 	// ファイルサーバーを作成
 	// http.FileServer関数は、指定されたディレクトリからファイルを提供するファイルサーバーを返す
 	files := http.FileServer(http.Dir(config.Config.Static))
@@ -58,5 +58,5 @@ func StartMainServer()error{
 	// ログインしてるアカウントしか見れないページ
 	http.HandleFunc("/", top)
 	http.HandleFunc("/todos", index)
-	return http.ListenAndServe(":" + config.Config.Port, nil)
+	return http.ListenAndServe(":"+config.Config.Port, nil)
 }
