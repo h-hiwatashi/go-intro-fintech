@@ -605,3 +605,5 @@ net/http.(*conn).serve(0x40000af720, {0x44c5c0, 0x400009bcb0})
 	/usr/local/go/src/net/http/server.go:1991 +0x544
 created by net/http.(*Server).Serve
 	/usr/local/go/src/net/http/server.go:3102 +0x43c
+2024/12/07 15:20:05 route_auth.go:53: sql: no rows in result set
+2024/12/07 15:20:05 server.go:3230: http: superfluous response.WriteHeader call from todo_app/app/controllers.authenticate (route_auth.go:72)

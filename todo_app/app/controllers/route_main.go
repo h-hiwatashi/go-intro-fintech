@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"log"
 	"net/http"
 )
 
@@ -35,14 +36,18 @@ func top(w http.ResponseWriter, r *http.Request) {
 
 // index関数を追加
 func index(w http.ResponseWriter, r *http.Request) {
-	// session関数を使って、セッションを取得
-	// session自体は使わないので、_で受け取る
-	_, err := session(w, r)
+	sess, err := session(w, r)
 	// sessionがなくてerrがnilでない場合、topページにリダイレクト
 	if err != nil {
 		http.Redirect(w, r, "/l", 302)
 	} else {
+		user, err := sess.GetUserBySession()
+		if err != nil {
+			log.Println(err)
+		}
+		todos, _ := user.GetTodosByUser()
+		user.Todos = todos
 		// sessionがある場合、indexページを表示
-		generateHTML(w, nil, "layout", "private_navbar", "index")
+		generateHTML(w, user, "layout", "private_navbar", "index")
 	}
 }

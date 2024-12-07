@@ -11,16 +11,4 @@ func main() {
 	fmt.Println("Database setup complete")
 
 	controllers.StartMainServer()
-
-	// user, _ := models.GetUserByEmail("test1@test.com")
-	// fmt.Println(user)
-
-	// session, err := user.CreateSession()
-	// if err != nil {
-	// 	fmt.Println("Session creation failed")
-	// }
-	// fmt.Println(session)
-
-	// valid ,_ := session.CheckSession()
-	// fmt.Println(valid)
 }

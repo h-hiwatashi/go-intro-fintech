@@ -12,6 +12,7 @@ type User struct {
 	Email     string
 	Password  string
 	CreatedAt time.Time
+	Todos     []Todo
 }
 
 // セッション情報を格納する構造体を追加
@@ -125,4 +126,15 @@ func (sess *Session) DeleteSessionByUUID() (err error) {
 		log.Fatalln(err)
 	}
 	return err
+}
+
+// セッション情報を取得するメソッドを追加
+func (sess *Session) GetUserBySession() (user User, err error) {
+	user = User{}
+	cmd := `SELECT id, uuid, name, email, created_at FROM users WHERE id = $1`
+	// ユーザー情報を取得するSQLを追加
+	// QueryRowメソッドを使ってSQLを実行
+	// Scanメソッドで取得したデータをuserに格納
+	err = Db.QueryRow(cmd, sess.UserID).Scan(&user.ID, &user.UUID, &user.Name, &user.Email, &user.CreatedAt)
+	return user, err
 }
