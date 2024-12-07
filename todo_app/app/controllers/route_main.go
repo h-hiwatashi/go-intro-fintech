@@ -51,3 +51,40 @@ func index(w http.ResponseWriter, r *http.Request) {
 		generateHTML(w, user, "layout", "private_navbar", "index")
 	}
 }
+
+func todoNew(w http.ResponseWriter, r *http.Request) {
+	_, err := session(w, r)
+	if err != nil {
+		http.Redirect(w, r, "/login", 302)
+	} else {
+		generateHTML(w, nil, "layout", "private_navbar", "todo_new")
+	}
+}
+
+func todoSave(w http.ResponseWriter, r *http.Request) {
+	sess, err := session(w, r)
+	if err != nil {
+		http.Redirect(w, r, "/login", 302)
+	} else {
+		// ParseForm関数を使って、リクエストのフォームデータを解析する
+		err = r.ParseForm()
+		if err != nil {
+			log.Println(err)
+		}
+
+		// セッションからユーザーを取得
+		user, err := sess.GetUserBySession()
+		if err != nil {
+			log.Println(err)
+		}
+
+		// contentを取得
+		content := r.PostFormValue("content")
+		// ユーザーに紐づいたTodoを作成
+		if err := user.CreateTodo(content); err != nil {
+			log.Println(err)
+		}
+
+		http.Redirect(w, r, "/todos", 302)
+	}
+}

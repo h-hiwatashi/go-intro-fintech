@@ -59,5 +59,7 @@ func StartMainServer() error {
 	// ログインしてるアカウントしか見れないページ
 	http.HandleFunc("/", top)
 	http.HandleFunc("/todos", index)
+	http.HandleFunc("/todos/new", todoNew)
+	http.HandleFunc("/todos/save", todoSave)
 	return http.ListenAndServe(":"+config.Config.Port, nil)
 }
