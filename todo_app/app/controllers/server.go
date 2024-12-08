@@ -3,7 +3,10 @@ package controllers
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
+	"regexp"
+	"strconv"
 	"todo_app/app/models"
 	"todo_app/config"
 )
@@ -38,6 +41,34 @@ func session(w http.ResponseWriter, r *http.Request) (sess models.Session, err e
 	return sess, err
 }
 
+// TODO:パターンとして覚える
+// 正規表現を使って、URLのパスをチェックする
+var validPath = regexp.MustCompile("^/todos/(edit|update)/([0-9]+)$")
+
+// リクエストをパースする関数
+func parseURL(fn func(http.ResponseWriter, *http.Request, int)) http.HandlerFunc {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// /todos/edit/1のようなURLをパース
+		// validPath.FindStringSubmatch(r.URL.Path)で、URLのパスが正しいかどうかをチェック
+		// 正しい場合、正規表現にマッチした文字列が返される
+		q := validPath.FindStringSubmatch(r.URL.Path)
+		if q == nil {
+			log.Fatalln("Invalid URL")
+			http.NotFound(w, r)
+			return
+		}
+		// 3番目の要素を数値に変換
+		qi, err := strconv.Atoi(q[2])
+		if err != nil {
+			// log.Fatalln(err)
+			http.NotFound(w, r)
+			return
+		}
+		// ハンドラ関数を呼び出す
+		fn(w, r, qi)
+	})
+}
+
 // StartMainServer関数を追加
 func StartMainServer() error {
 	// ファイルサーバーを作成
@@ -61,5 +92,8 @@ func StartMainServer() error {
 	http.HandleFunc("/todos", index)
 	http.HandleFunc("/todos/new", todoNew)
 	http.HandleFunc("/todos/save", todoSave)
+	// 要求されたURLの先頭が"/todos/edit/"である場合、parseURL関数を使ってリクエストをパース
+	http.HandleFunc("/todos/edit/", parseURL(todoEdit))
+	http.HandleFunc("/todos/update/", parseURL(todoUpdate))
 	return http.ListenAndServe(":"+config.Config.Port, nil)
 }
