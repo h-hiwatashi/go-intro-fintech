@@ -43,7 +43,7 @@ func session(w http.ResponseWriter, r *http.Request) (sess models.Session, err e
 
 // TODO:パターンとして覚える
 // 正規表現を使って、URLのパスをチェックする
-var validPath = regexp.MustCompile("^/todos/(edit|update)/([0-9]+)$")
+var validPath = regexp.MustCompile("^/todos/(edit|update|delete)/([0-9]+)$")
 
 // リクエストをパースする関数
 func parseURL(fn func(http.ResponseWriter, *http.Request, int)) http.HandlerFunc {
@@ -95,5 +95,6 @@ func StartMainServer() error {
 	// 要求されたURLの先頭が"/todos/edit/"である場合、parseURL関数を使ってリクエストをパース
 	http.HandleFunc("/todos/edit/", parseURL(todoEdit))
 	http.HandleFunc("/todos/update/", parseURL(todoUpdate))
+	http.HandleFunc("/todos/delete/", parseURL(todoDelete))
 	return http.ListenAndServe(":"+config.Config.Port, nil)
 }
