@@ -4,7 +4,7 @@ intodb:
 
 .PHONY: intogo
 intogo:
-	docker container exec -it go-todolist-web-1 bash
+	docker container exec -it todo_app-web-1 bash
 
 .PHONY: upd
 upd:
