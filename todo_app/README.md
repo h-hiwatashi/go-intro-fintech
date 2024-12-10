@@ -28,3 +28,7 @@ JQuery, Bootstarp
 # Infra
 
 heroku
+
+# 確認方法
+
+http://localhost:8080/
