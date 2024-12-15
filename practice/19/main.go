@@ -26,7 +26,7 @@ func (i MyInt) String() string {
 }
 
 type Number interface {
-	int | int32 | int64 | float32 | float64
+	~int | ~int32 | ~int64 | ~float32 | ~float64
 }
 
 func Max[T Number](a, b T) T {
